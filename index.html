@@ -6,7 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- displays site properly based on user's device -->
 
+
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+  <link rel="stylesheet" href="index.css">
+
 
   <title>Frontend Mentor | IP Address Tracker</title>
 
@@ -23,39 +32,38 @@
   </style>
 </head>
 
-<body>
+<body onload="removeMap();fetchipData()">
 
   <h1 class="title">
     IP Address Tracker</h1>
 
 
-  <form>
-    <input type="url" placeholder="Search for any IP address or domain"></input>
-    <button>Submit</button>
-  </form>
+  <input id="ip-domain-user-input" type="text" placeholder="Search for any IP address or domain"></input>
+  <button onClick="removeMap();fetchipData()">Submit</button>
+
 
   <div class="results">
     <div class="result">
       <h2 class="result-heading">IP Address</h2>
-      <p class="result-data"></p>
+      <p id="ip-address" class="result-data"></p>
     </div>
 
     <div class="result">
       <h2 class="result-heading">Location</h2>
-      <p class="result-data"></p>
+      <p id="location" class="result-data"></p>
     </div>
 
     <div class="result">
       <h2 class="result-heading">Timezone</h2>
-      <p class="result-data">UTC </p>
+      <p id="timezone" class="result-data">UTC </p>
     </div>
 
     <div class="result">
       <h2 class="result-heading">ISP</h2>
-      <p class="result-data"></p>
+      <p id="isp" class="result-data"></p>
     </div>
-    <div class="map-container">
-      <img class="map" src="" alt="">
+
+    <div id="mapid">
     </div>
 
   </div>
@@ -64,6 +72,8 @@
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
     Coded by <a href="#">Your Name Here</a>.
   </div>
+  <script src="index.js"></script>
+
 </body>
 
 </html>
