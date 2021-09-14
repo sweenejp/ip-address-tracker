@@ -7,59 +7,29 @@ const timezoneElement = document.getElementById("timezone");
 const ispElement = document.getElementById("isp");
 const errorElement = document.getElementById("error-message");
 const formElement = document.getElementById("ip-domain-search");
-// let mymap = L.map("mapid");
+const resultsElement = document.getElementById("results");
+let mymap = L.map("mapid");
 
 function removeMap(map) {
   map.off();
   map.remove();
 }
 
-formElement.addEventListener("submit", (event) => {
-  event.preventDefault();
-
+function handleError() {
+  resultsElement.classList.add("hide");
   errorElement.classList.add("show");
   errorElement.innerHTML =
     "Looks like you didn't enter a domain or an IP address. A domain looks something like 'google.com' or 'mozilla.org'. An IP address looks something like '8.8.8.8'or '172.67.150.108'";
-});
+}
 
-function fetchFakeipAndMapData() {
-  data = {
-    ip: "8.8.8.8",
-    location: {
-      country: "US",
-      region: "California",
-      city: "Mountain View",
-      lat: 37.38605,
-      lng: -122.08385,
-      postalCode: "94035",
-      timezone: "-07:00",
-      geonameId: 5375480,
-    },
-    domains: [
-      "0--9.ru",
-      "000180.top",
-      "00049ok.com",
-      "000xs.net",
-      "001998.com.he2.aqb.so",
-    ],
-    as: {
-      asn: 15169,
-      name: "Google LLC",
-      route: "8.8.8.0/24",
-      domain: "https://about.google/intl/en/",
-      type: "Content",
-    },
-    isp: "Google LLC",
-    proxy: { proxy: false, vpn: false, tor: false },
-  };
-
-  ipAddressElement.innerHTML = data.ip;
-  locationElement.innerHTML = `${data.location.city}, ${data.location.region} ${data.location.postalCode}`;
-  timezoneElement.innerHTML = data.location.timezone;
-  ispElement.innerHTML = data.isp;
+function removeError() {
+  resultsElement.classList.remove("hide");
+  errorElement.classList.remove("show");
+  errorElement.innerHTML = "";
 }
 
 async function fetchipAndMapData() {
+  removeError();
   let userInput = {
     value: document.getElementById("ip-domain-user-input").value,
     type: null,
@@ -81,7 +51,7 @@ async function fetchipAndMapData() {
     removeMap(mymap);
     ipAddressElement.innerHTML = data.ip;
     locationElement.innerHTML = `${data.location.city}, ${data.location.region} ${data.location.postalCode}`;
-    timezoneElement.innerHTML = data.location.timezone;
+    timezoneElement.innerHTML = `UTC ${data.location.timezone}`;
     ispElement.innerHTML = data.isp;
     // === Map API === //
 
@@ -103,3 +73,8 @@ async function fetchipAndMapData() {
     handleError();
   }
 }
+
+formElement.addEventListener("submit", (event) => {
+  event.preventDefault();
+  fetchipAndMapData();
+});

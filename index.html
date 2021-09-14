@@ -16,12 +16,12 @@
 
 </head>
 
-<body onload="fetchFakeipAndMapData()">
+<body onload="fetchipAndMapData()">
 
   <div class="background-container">
 
     <div class="banner"></div>
-    <div class="map" id="mapid"><img class="test-map" src="images/map-placeholder.png" alt="">
+    <div class="map" id="mapid">
     </div>
 
   </div>
@@ -37,7 +37,7 @@
 
     <div id="error-message" class="error-message card"></div>
 
-    <div class="results card">
+    <div id="results" class="results card">
       <div class="result">
         <h2 class="result-heading">IP Address</h2>
         <p id="ip-address" class="result-data"></p>
@@ -48,7 +48,7 @@
       </div>
       <div class="result">
         <h2 class="result-heading">Timezone</h2>
-        <p id="timezone" class="result-data">UTC </p>
+        <p id="timezone" class="result-data"></p>
       </div>
       <div class="result">
         <h2 class="result-heading">ISP</h2>
