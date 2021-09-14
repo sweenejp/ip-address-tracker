@@ -68,7 +68,27 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 This was my first real challenge using an API. Some notes:
 
 - Create a file to simulate the data that comes from the API. That way, while testing, you don't have to continually call the API.
--
+- Ran into a few issues with the map API. Had to "remove" the map every time the page is loaded and before fetching data.
+- Stored `userInput` as an object in order to give it a "value" and "type". Assigned type based on some regex matching. I then generated the URL to fetch data with a ternary operator.
+
+```js
+let userInput = {
+  value: document.getElementById("ip-domain-user-input").value,
+  type: null,
+};
+if (userInput.value.match(/\d*\.\d*\.\d*\.\d*/)) {
+  userInput.type = "ipAddress";
+} else {
+  userInput.type = "domain";
+}
+
+// if no user input => get default API value (which uses user's IP address as a default)
+const url = userInput.value
+  ? `https://geo.ipify.org/api/v1?apiKey=at_buolCeBWmSm37OCUs5M7VfDn6RD38&${userInput.type}=${userInput.value}`
+  : "https://geo.ipify.org/api/v1?apiKey=at_buolCeBWmSm37OCUs5M7VfDn6RD38";
+```
+
+- handling errors...
 
 ### Continued development
 
