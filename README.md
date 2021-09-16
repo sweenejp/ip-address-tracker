@@ -35,7 +35,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here]()
+- Solution URL: [Add solution URL here](https://www.frontendmentor.io/solutions/ip-address-tracker-wdNpQaW_e)
 - Live Site URL: [Add live site URL here](https://jsweeney-ip-address-tracker.netlify.app)
 
 ## My process
@@ -88,4 +88,4 @@ I built this with Vanilla JavaScript. This is the most I've done with Vanilla JS
 ## Author
 
 - Website - [Jimmy Sweeney](https://jimmysweeney.page)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/sweenejp)
+- Frontend Mentor - [@sweenejp](https://www.frontendmentor.io/profile/sweenejp)
