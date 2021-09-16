@@ -1,6 +1,3 @@
-// === IP API === //
-//  https://geo.ipify.org/api/v1?apiKey=at_buolCeBWmSm37OCUs5M7VfDn6RD38&ipAddress=
-
 const ipAddressElement = document.getElementById("ip-address");
 const locationElement = document.getElementById("location");
 const timezoneElement = document.getElementById("timezone");
@@ -8,7 +5,11 @@ const ispElement = document.getElementById("isp");
 const errorElement = document.getElementById("error-message");
 const formElement = document.getElementById("ip-domain-search");
 const resultsElement = document.getElementById("results");
+const toggleCloseElement = document.getElementById("toggle-close");
 let mymap = L.map("mapid");
+const mapIcon = L.icon({
+  iconUrl: "./images/icon-location.svg",
+});
 
 function removeMap(map) {
   map.off();
@@ -55,7 +56,10 @@ async function fetchipAndMapData() {
     ispElement.innerHTML = data.isp;
     // === Map API === //
 
-    mymap = L.map("mapid").setView([data.location.lat, data.location.lng], 13);
+    mymap = L.map("mapid", { scrollWheelZoom: false }).setView(
+      [data.location.lat, data.location.lng],
+      13
+    );
 
     await L.tileLayer(
       "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoic3dlZW5lanAiLCJhIjoiY2t0aHB6d3k3MHU0MjMxbXZtMnBjdnRqZSJ9.CAZHA9NWRWytRhDCtDAHGw",
@@ -69,6 +73,9 @@ async function fetchipAndMapData() {
         accessToken: "your.mapbox.access.token",
       }
     ).addTo(mymap);
+    L.marker([data.location.lat, data.location.lng], { icon: mapIcon }).addTo(
+      mymap
+    );
   } else {
     handleError();
   }
@@ -77,4 +84,12 @@ async function fetchipAndMapData() {
 formElement.addEventListener("submit", (event) => {
   event.preventDefault();
   fetchipAndMapData();
+});
+
+resultsElement.addEventListener("click", () => {
+  if (resultsElement.classList.contains("collapse")) {
+    resultsElement.classList.remove("collapse");
+  } else {
+    resultsElement.classList.add("collapse");
+  }
 });

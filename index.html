@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- leaflet  -->
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico">
+  <!-- leaflet -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
     integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
     crossorigin="" />
@@ -18,54 +19,51 @@
 
 <body onload="fetchipAndMapData()">
 
-  <div class="background-container">
+  <main class="main">
 
-    <div class="banner"></div>
-    <div class="map" id="mapid">
+    <div class="body-area">
+
+      <h1 class="title">IP Address Tracker</h1>
+
+      <form class="ip-domain-search" id="ip-domain-search">
+        <input class="ip-domain-search-input" id="ip-domain-user-input" type="text"
+          placeholder="Search for any IP address or domain"></input>
+        <button class="ip-domain-search-button"></button>
+      </form>
+
+      <div id="error-message" class="error-message card"></div>
+
+      <div id="results" class="results card">
+        <div class="result">
+          <h2 class="result-heading">IP Address</h2>
+          <p id="ip-address" class="result-data"></p>
+        </div>
+        <div class="result">
+          <h2 class="result-heading">Location</h2>
+          <p id="location" class="result-data"></p>
+        </div>
+        <div class="result">
+          <h2 class="result-heading">Timezone</h2>
+          <p id="timezone" class="result-data"></p>
+        </div>
+        <div class="result">
+          <h2 class="result-heading">ISP</h2>
+          <p id="isp" class="result-data"></p>
+        </div>
+      </div>
+
     </div>
 
-  </div>
+    <div class="map-area" id="mapid"></div>
 
-  <main class="foreground-container">
-
-    <h1 class="title">IP Address Tracker</h1>
-    <form class="ip-domain-search" id="ip-domain-search">
-      <input class="ip-domain-search-input" id="ip-domain-user-input" type="text"
-        placeholder="Search for any IP address or domain"></input>
-      <button class="ip-domain-search-button"></button>
-    </form>
-
-    <div id="error-message" class="error-message card"></div>
-
-    <div id="results" class="results card">
-      <div class="result">
-        <h2 class="result-heading">IP Address</h2>
-        <p id="ip-address" class="result-data"></p>
+    <footer class="footer">
+      <div class="attribution">
+        Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+        Coded by <a href="https://github/sweenejp">Jimmy Sweeney</a>.
       </div>
-      <div class="result">
-        <h2 class="result-heading">Location</h2>
-        <p id="location" class="result-data"></p>
-      </div>
-      <div class="result">
-        <h2 class="result-heading">Timezone</h2>
-        <p id="timezone" class="result-data"></p>
-      </div>
-      <div class="result">
-        <h2 class="result-heading">ISP</h2>
-        <p id="isp" class="result-data"></p>
-      </div>
-    </div>
+    </footer>
 
   </main>
-
-  <footer class="footer">
-    <div class="attribution">
-      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
-      Coded by <a href="#">Your Name Here</a>.
-    </div>
-  </footer>
-
-
 
   <script src="index.js"></script>
 
